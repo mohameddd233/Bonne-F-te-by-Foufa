@@ -41,11 +41,15 @@ header {
 
 .logo img {
     height: 70px;
-    transition: transform 0.3s;
-}
+    width: auto;
+    max-width: 100%;
+    display: block;
 
-.logo img:hover {
-    transform: scale(1.05);
+    /* حلول خاصة بـ iOS Safari */
+    -webkit-filter: none !important;
+    filter: none !important;
+    mix-blend-mode: normal;
+    image-rendering: auto;
 }
 
 nav a {
