@@ -1,0 +1,294 @@
+/* style.css - Bonne Fête by Foufa (Logo Colors Edition) */
+
+:root {
+    --green: #8A8F1A;        /* اللون الأساسي من اللوجو */
+    --green-dark: #6F7314;   /* الغامق */
+    --gold: #B6B14A;         /* ذهبي زيتوني */
+    --cream: #F3F6D9;        /* خلفية */
+    --dark-cream: #E6E9C4;   /* أقسام */
+    --white: #FFFFFF;
+    --text: #2E2E2E;
+    --shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+    direction: rtl;
+}
+
+/* ===== الهيدر ===== */
+header {
+    background-color: var(--green-dark);
+    color: var(--white);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow);
+}
+
+.logo img {
+    height: 60px;
+    filter: brightness(0) invert(1);
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--gold);
+}
+
+/* ===== الأزرار ===== */
+.btn,
+.btn-small {
+    display: inline-block;
+    background-color: var(--green);
+    color: var(--white);
+    padding: 0.75rem 1.8rem;
+    text-decoration: none;
+    border-radius: 40px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn-small:hover {
+    background-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+.btn-small {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.9rem;
+}
+
+/* ===== Hero ===== */
+.hero {
+    background:
+        linear-gradient(rgba(111,115,20,0.9), rgba(111,115,20,0.9)),
+        url('images/hero-background.jpg') center/cover no-repeat;
+    color: var(--white);
+    text-align: center;
+    padding: 5rem 2rem;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    opacity: 0.95;
+}
+
+/* ===== المميزات ===== */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    background-color: var(--dark-cream);
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.feature {
+    max-width: 280px;
+}
+
+.feature img {
+    width: 70px;
+    margin-bottom: 1rem;
+    filter: brightness(0) saturate(100%)
+        invert(46%) sepia(25%) saturate(680%)
+        hue-rotate(20deg) brightness(90%) contrast(90%);
+}
+
+.feature h3 {
+    color: var(--green-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+/* ===== المنتجات ===== */
+.featured-products,
+.menu-table,
+.order-page,
+.about-content,
+.gallery-section,
+.contact-section {
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.featured-products h2,
+.about-content h2,
+.gallery-section h2,
+.contact-section h2 {
+    color: var(--green-dark);
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.product-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    width: 260px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-card h3 {
+    color: var(--green-dark);
+    margin: 1rem 0 0.5rem;
+}
+
+.product-card p {
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* ===== جدول المنيو ===== */
+.menu-table table {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.menu-table th {
+    background-color: var(--green-dark);
+    color: var(--white);
+    padding: 1rem;
+}
+
+.menu-table td {
+    padding: 0.9rem;
+    border-bottom: 1px solid var(--cream);
+}
+
+.menu-table tr:hover {
+    background-color: var(--dark-cream);
+}
+
+/* ===== الجاليري ===== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    height: 250px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===== السلة ===== */
+.cart {
+    background-color: var(--dark-cream);
+    padding: 1.5rem;
+    border-radius: 25px;
+    max-width: 500px;
+    margin: auto;
+    border: 1px solid var(--gold);
+}
+
+.cart h2 {
+    color: var(--green-dark);
+}
+
+.cart li {
+    border-bottom: 1px dashed var(--gold);
+    padding: 0.5rem;
+}
+
+/* ===== اتصل بنا ===== */
+.contact-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.contact-card h3 {
+    color: var(--green-dark);
+}
+
+/* ===== الفوتر ===== */
+footer {
+    background-color: var(--green-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem;
+}
+
+/* ===== موبايل ===== */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .product-card {
+        width: 90%;
+    }
+}

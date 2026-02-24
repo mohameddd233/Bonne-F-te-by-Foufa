@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اطلب الآن - Bonne Fête by Foufa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo-bonnefete-main.png" alt="Bonne Fête by Foufa">
+        </div>
+        <nav>
+            <a href="index.html">الرئيسية</a>
+            <a href="about.html">عن البراند</a>
+            <a href="menu.html">المنيو</a>
+            <a href="gallery.html">المعرض</a>
+            <a href="order.html">اطلب الآن</a>
+            <a href="contact.html">اتصل بنا</a>
+        </nav>
+    </header>
+
+    <section class="order-page">
+        <h1>اختر منتجاتك</h1>
+        <p>اختر الحجم (صغير 500 جم / كبير 750 جم) ثم أضف إلى السلة</p>
+
+        <div class="product-grid" id="product-list">
+            <!-- المنتجات ستتم إضافتها عبر JavaScript -->
+        </div>
+
+        <div class="cart">
+            <h2>🛒 سلة الطلب</h2>
+            <ul id="cart-items"></ul>
+            <p>الإجمالي: <span id="cart-total">0</span> ج.م</p>
+            <button id="whatsapp-order" class="btn">إرسال الطلب عبر واتساب</button>
+            <button id="clear-cart" class="btn-small" style="background-color: #ccc; color: #333; margin-top: 0.5rem;">تفريغ السلة</button>
+        </div>
+    </section>
+<footer>
+    <p>© 2025 Bonne Fête by Foufa. All Rights Reserved.</p>
+    <p class="designer-credit">Design by: <a href="#" target="_blank">Mohamed Ali</a></p>
+    <div class="social">
+        <a href="https://wa.me/201027930131" target="_blank">WhatsApp</a>
+        <a href="https://instagram.com/bonnefete_by_foufa" target="_blank">Instagram</a>
+    </div>
+</footer>
+
+    <script>
+        // بيانات المنتجات من المنيو (يمكن تعديلها حسب قائمتك الفعلية)
+        const products = [
+            { name: "كحك سادة بالعجوة", smallPrice: 575, largePrice: 875, img: "images/product-kahk-agameya.jpg" },
+            { name: "كحك عجوة وعين جمل", smallPrice: 650, largePrice: 975, img: "images/product-kahk-agameya-walnut.jpg" },
+            { name: "كحك عجوة وفستق", smallPrice: 700, largePrice: 1050, img: "images/product-kahk-agameya-pistachio.jpg" },
+            { name: "كحك محشو عجوة", smallPrice: 550, largePrice: 825, img: "images/product-kahk-filled-agwa.jpg" },
+            { name: "كحك محشو ملبن", smallPrice: 550, largePrice: 825, img: "images/product-kahk-filled-malban.jpg" },
+            { name: "كحك سادة بدون حشو", smallPrice: 575, largePrice: 875, img: "images/product-kahk-original-no-filling.jpg" },
+            { name: "بيتي فور", smallPrice: 600, largePrice: 900, img: "images/product-petitfours.jpg" },
+            { name: "غريبة", smallPrice: 600, largePrice: 900, img: "images/product-ghorayeba.jpg" },
+            { name: "بسكويت", smallPrice: 500, largePrice: 750, img: "images/product-biscuits.jpg" },
+            { name: "بسكويت محشو عجوة", smallPrice: 450, largePrice: 675, img: "images/product-cookies-filled-agwa.jpg" },
+            { name: "كعب الغزال", smallPrice: 450, largePrice: 675, img: "images/product-kab-al-ghazal.jpg" }
+        ];
+
+        // دالة عرض المنتجات (تُستدعى عند تحميل الصفحة)
+        function renderProducts() {
+            const container = document.getElementById('product-list');
+            container.innerHTML = '';
+            products.forEach((p, index) => {
+                const div = document.createElement('div');
+                div.className = 'product-card';
+                div.innerHTML = `
+                    <img src="${p.img}" alt="${p.name}" onclick="zoomImage(this)">
+                    <h3>${p.name}</h3>
+                    <select id="size-${index}" class="size-select">
+                        <option value="">اختر الحجم</option>
+                        <option value="صغير">صغير (500g) - ${p.smallPrice} ج.م</option>
+                        <option value="كبير">كبير (750g) - ${p.largePrice} ج.م</option>
+                    </select>
+                    <button onclick="addToCartFromOrder(${index})" class="btn-small">➕ أضف للسلة</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // دالة الإضافة إلى السلة خاصة بصفحة الطلب (تستخدم دالة addToCart العامة من script.js)
+        window.addToCartFromOrder = function(index) {
+            const select = document.getElementById(`size-${index}`);
+            const size = select.value;
+            if (!size) {
+                alert('يرجى اختيار الحجم أولاً');
+                return;
+            }
+            const product = products[index];
+            const price = size === 'صغير' ? product.smallPrice : product.largePrice;
+            // استدعاء الدالة العامة addToCart (موجودة في script.js)
+            if (typeof addToCart === 'function') {
+                addToCart(product.name, size, price);
+            } else {
+                // fallback إذا لم يتم تحميل script.js بشكل صحيح
+                console.error('addToCart غير موجودة');
+            }
+        };
+
+        // تنفيذ بعد تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            // إذا كانت الدوال العامة محملة من script.js، نستدعي loadCart
+            if (typeof loadCart === 'function') {
+                loadCart();
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
