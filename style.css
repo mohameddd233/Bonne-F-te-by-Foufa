@@ -38,8 +38,9 @@ header {
 }
 
 .logo img {
-    height: 60px;
-    filter: brightness(0) invert(1);
+  height: 50px;
+  width: auto;
+  background: transparent;
 }
 
 nav a {
