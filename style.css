@@ -1,5 +1,8 @@
-/* style.css - Bonne Fête by Foufa (Logo Colors Edition) */
+/* ================================
+   Bonne Fête by Foufa - Style.css
+   ================================ */
 
+/* ===== المتغيرات ===== */
 :root {
     --green: #8A8F1A;        /* اللون الأساسي من اللوجو */
     --green-dark: #6F7314;   /* الغامق */
@@ -11,6 +14,7 @@
     --shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
+/* ===== Reset ===== */
 * {
     margin: 0;
     padding: 0;
@@ -37,10 +41,23 @@ header {
     box-shadow: var(--shadow);
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
 .logo img {
-  height: 50px;
-  width: auto;
-  background: transparent;
+    height: 55px;
+    width: auto;
+    display: block;
+    background: transparent;
+    object-fit: contain;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 nav a {
@@ -283,6 +300,11 @@ footer {
     header {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
+    }
+
+    nav a {
+        margin: 0.5rem;
     }
 
     .hero-content h1 {
